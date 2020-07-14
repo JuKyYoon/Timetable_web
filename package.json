@@ -1,5 +1,27 @@
 {
-  "dependencies": {
-    "electron-is-dev": "^1.2.0"
+  "main": "./app/main.js",
+
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "scripts": {
+    "build": "parcel build index.html --no-cache --no-source-maps --out-dir build --public-url ./ --target electron",
+    "build:electron": "tsc ./app/main.ts",
+    "clean": "rm -rf .cache build dist",
+    "dist": "electron-builder --linux",
+    "debug": "concurrently 'cross-env BROWSER=none yarn start' 'wait-on http://localhost:3000 && electron .'",
+    "start": "parcel ./app/app.html --port 8080 --out-dir build"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "cross-env": "^7.0.2",
+    "electron": "^9.1.0",
+    "electron-builder": "^22.7.0",
+    "electron-is-dev": "^1.2.0",
+    "wait-on": "^5.1.0"
   }
 }
